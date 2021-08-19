@@ -8,11 +8,11 @@ class WallServiceTest {
     fun add() {
         val service = WallService()
 
-        service.add(Post(text = "Тестовый пост"))
+        val testPost = service.add(Post(text = "Тестовый пост"))
 
-        val result = service.posts[0].id
+        val result = service.posts[0]
 
-        assertEquals(1,result)
+        assertEquals(testPost,result)
     }
 
     @Test
@@ -25,7 +25,7 @@ class WallServiceTest {
 
         val update = service.add(Post(text = "Тестовый пост 4"))
 
-        val result = service.update(update.id)
+        val result = service.update(update)
 
         assertTrue(result)
     }
@@ -34,11 +34,9 @@ class WallServiceTest {
     fun updateNonExisting() {
         val service = WallService()
 
-        service.add(Post(text = "Тестовый пост 1"))
-        service.add(Post(text = "Тестовый пост 2"))
-        service.add(Post(text = "Тестовый пост 3"))
+        val test = Post(id = 10, text = "Тестовый пост, без воллсервиса")
 
-        val result = service.update(4)
+        val result = service.update(test)
 
         assertFalse(result)
     }

@@ -6,7 +6,7 @@ data class Post(
     val ownerId: Int = 0,
     val fromId: Int = 0,
     val createdBy: Int = 0,
-    val date: Date = Date.from(Instant.now()),
+    val date: Any = 0,
     val text: String,
     val replyOwnerId: Int = 0,
     val replyPostId: Int = 0,

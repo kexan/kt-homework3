@@ -3,7 +3,8 @@ class WallService {
     private var id = 0
 
     fun add(post: Post): Post {
-        post.id = id++
+        id++
+        post.id = id
         posts += post
         return posts.last()
     }

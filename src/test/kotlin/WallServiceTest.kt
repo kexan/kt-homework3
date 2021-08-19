@@ -8,11 +8,10 @@ class WallServiceTest {
     fun add() {
         val service = WallService()
 
-        val testPost = service.add(Post(text = "Тестовый пост", original = null))
+        val testPost = service.add(Post(id = 10, text = "Тестовый пост", original = null))
+        val expected = Post(id = 1, text = "Тестовый пост", original = null)
 
-        val result = service.posts[0]
-
-        assertEquals(testPost,result)
+        assertEquals(expected, testPost)
     }
 
     @Test

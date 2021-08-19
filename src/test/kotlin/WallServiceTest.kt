@@ -1,7 +1,6 @@
 import attachments.Photo
-import org.junit.Test
-
 import org.junit.Assert.*
+import org.junit.Test
 
 class WallServiceTest {
 
@@ -9,20 +8,23 @@ class WallServiceTest {
     fun add() {
         val service = WallService()
 
-        val testPost = service.add(Post(text = "Тестовый пост", original = null))
+        val testPost = service.add(Post(id = 10, text = "Тестовый пост", original = null))
+        val expected = Post(id = 1, text = "Тестовый пост", original = null)
 
-        val result = service.posts[0]
-
-        assertEquals(testPost, result)
+        assertEquals(expected, testPost)
     }
 
     @Test
     fun addAttachment() {
         val service = WallService()
+
         val photo = Photo(1, 1, 1)
+        val photo2 = Photo(2,2,2)
+
         val testAttachment = service.addAttachment(photo)
-        val result = service.attachments[0]
-        assertEquals(testAttachment, result)
+        val testAttachment2 = service.addAttachment(photo2)
+
+        assertNotEquals(testAttachment, testAttachment2)
     }
 
     @Test

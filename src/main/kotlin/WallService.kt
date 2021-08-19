@@ -1,11 +1,19 @@
+import attachments.Attachment
+
 class WallService {
     var posts = emptyArray<Post>()
+    var attachments = emptyArray<Attachment>()
     private var id = 0
 
     fun add(post: Post): Post {
         post.id = id++
         posts += post
         return posts.last()
+    }
+
+    fun addAttachment(attachment: Attachment): Attachment {
+        attachments += attachment
+        return attachments.last()
     }
 
     fun update(post: Post): Boolean {

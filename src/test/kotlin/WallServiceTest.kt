@@ -8,7 +8,7 @@ class WallServiceTest {
     fun add() {
         val service = WallService()
 
-        val testPost = service.add(Post(text = "Тестовый пост"))
+        val testPost = service.add(Post(text = "Тестовый пост", original = null))
 
         val result = service.posts[0]
 
@@ -19,11 +19,11 @@ class WallServiceTest {
     fun updateExisting() {
         val service = WallService()
 
-        service.add(Post(text = "Тестовый пост 1"))
-        service.add(Post(text = "Тестовый пост 2"))
-        service.add(Post(text = "Тестовый пост 3"))
+        service.add(Post(text = "Тестовый пост 1", original = null))
+        service.add(Post(text = "Тестовый пост 2", original = null))
+        service.add(Post(text = "Тестовый пост 3", original = null))
 
-        val update = service.add(Post(text = "Тестовый пост 4"))
+        val update = service.add(Post(text = "Тестовый пост 4", original = null))
 
         val result = service.update(update)
 
@@ -34,7 +34,7 @@ class WallServiceTest {
     fun updateNonExisting() {
         val service = WallService()
 
-        val test = Post(id = 10, text = "Тестовый пост, без воллсервиса")
+        val test = Post(id = 10, text = "Тестовый пост, без воллсервиса", original = null)
 
         val result = service.update(test)
 

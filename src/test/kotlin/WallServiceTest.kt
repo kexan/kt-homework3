@@ -11,6 +11,7 @@ class WallServiceTest {
         val testPost = service.add(Post(id = 10, text = "Тестовый пост", original = null))
         val expected = Post(id = 1, text = "Тестовый пост", original = null)
 
+
         assertEquals(expected, testPost)
     }
 
@@ -25,6 +26,7 @@ class WallServiceTest {
         val testAttachment2 = service.addAttachment(photo2)
 
         assertNotEquals(testAttachment, testAttachment2)
+
     }
 
     @Test

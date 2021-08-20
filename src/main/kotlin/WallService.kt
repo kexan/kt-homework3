@@ -1,4 +1,4 @@
-import attachments.Attachment
+import attachments.*
 
 class WallService {
     var posts = emptyArray<Post>()
@@ -13,7 +13,17 @@ class WallService {
     }
 
     fun addAttachment(attachment: Attachment): Attachment {
-        attachments += attachment
+
+        val newAttachment: Attachment = when (attachment) {
+            is Photo -> PhotoAttachment(attachment.type, attachment)
+            is Video -> VideoAttachment(attachment.type, attachment)
+            is Audio -> AudioAttachment(attachment.type, attachment)
+            is Document -> DocumentAttachment(attachment.type, attachment)
+            is Link -> LinkAttachment(attachment.type, attachment)
+            else -> throw Exception()
+        }
+
+        attachments += newAttachment
         return attachments.last()
     }
 

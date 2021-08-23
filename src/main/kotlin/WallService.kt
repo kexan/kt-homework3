@@ -1,15 +1,49 @@
 import attachments.*
+import exceptions.CommentNotFoundException
+import exceptions.NoSuchReasonException
+import exceptions.PostNotFoundException
 
 class WallService {
     var posts = emptyArray<Post>()
     var attachments = emptyArray<Attachment>()
-    private var id = 0
+    var comments = emptyArray<Comment>()
+    var commentReports = emptyArray<CommentReport>()
+    private var postId = 0
+    private var commentId = 0
 
     fun add(post: Post): Post {
-        id++
-        post.id = id
+        postId++
+        post.id = postId
         posts += post
         return posts.last()
+    }
+
+    fun createComment(comment: Comment) {
+        commentId++
+        comment.id = commentId
+        for (postInArray in posts) {
+            if (comment.postId == postInArray.id) {
+                comments += comment
+            } else {
+                throw PostNotFoundException()
+            }
+        }
+    }
+
+    fun reportComment(reportedComment: Comment, reason: Int) {
+
+        if (reason < 0 || reason > 8) {
+            throw NoSuchReasonException()
+        } else
+
+        for (commentInArray in comments) {
+            if (reportedComment.id == commentInArray.id) {
+                val report = CommentReport(reportedComment.fromId, reportedComment.id, reason)
+                commentReports += report
+            } else {
+                throw CommentNotFoundException()
+            }
+        }
     }
 
     fun addAttachment(attachment: Attachment): Attachment {

@@ -16,9 +16,9 @@ fun main() {
     service.addAttachment(link)
 
     val post = Post(text = "Тестовый пост", original = null)
-    val comment = Comment(1, 1, 1, text = "Тест1")
-    val comment2 = Comment(2, 1, 2, text = "Тест1")
+    val post2 = Post(text = "Тестовый пост 2", original = null)
+    val comment = Comment(1, 2, 1, text = "Тест1")
     service.add(post)
+    service.add(post2)
     service.createComment(comment)
-    service.reportComment(comment2,0)
 }

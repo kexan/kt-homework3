@@ -19,31 +19,31 @@ class WallService {
     }
 
     fun createComment(comment: Comment) {
-        commentId++
-        comment.id = commentId
         for (postInArray in posts) {
             if (comment.postId == postInArray.id) {
+                commentId++
+                comment.id = commentId
                 comments += comment
-            } else {
-                throw PostNotFoundException()
+                return
             }
         }
+        throw PostNotFoundException()
     }
 
     fun reportComment(reportedComment: Comment, reason: Int) {
 
         if (reason < 0 || reason > 8) {
             throw NoSuchReasonException()
-        } else
+        }
 
         for (commentInArray in comments) {
             if (reportedComment.id == commentInArray.id) {
                 val report = CommentReport(reportedComment.fromId, reportedComment.id, reason)
                 commentReports += report
-            } else {
-                throw CommentNotFoundException()
+                return
             }
         }
+        throw CommentNotFoundException()
     }
 
     fun addAttachment(attachment: Attachment): Attachment {

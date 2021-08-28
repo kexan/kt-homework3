@@ -1,13 +1,18 @@
+package services
+
+import Comment
+import CommentReport
+import Post
 import attachments.*
 import exceptions.CommentNotFoundException
 import exceptions.NoSuchReasonException
 import exceptions.PostNotFoundException
 
 class WallService {
-    var posts = emptyArray<Post>()
-    var attachments = emptyArray<Attachment>()
-    var comments = emptyArray<Comment>()
-    var commentReports = emptyArray<CommentReport>()
+    var posts = mutableListOf<Post>()
+    var attachments = mutableListOf<Attachment>()
+    var comments = mutableListOf<Comment>()
+    var commentReports = mutableListOf<CommentReport>()
     private var postId = 0
     private var commentId = 0
 

@@ -1,3 +1,7 @@
+package services
+
+import Comment
+import Post
 import attachments.Photo
 import exceptions.CommentNotFoundException
 import exceptions.NoSuchReasonException

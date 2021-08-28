@@ -11,6 +11,6 @@ data class Comment(
     val replyToComment: Int = 0,
     val attachments: Attachment? = null,
     val parentsStack: Any = 0,
-    val thread: Any = 0
-
+    val thread: Any = 0,
+    var deleted: Boolean = false
 )
